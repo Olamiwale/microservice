@@ -1,0 +1,37 @@
+name: Product Pipeline
+
+on:
+  push:
+    paths:
+      - 'service/product/**'
+      - 'k8s/product-deployment.yaml'
+      - 'k8s/product-service.yaml'
+      - '.github/workflows/product-pipeline.yml'
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t briitzacr.azurecr.io/microservices-products:latest -f service/products/Dockerfile .
+          docker push briitzacr.azurecr.io/microservices-products:latest
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'latest'
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f k8s/product-deployment.yaml
+          kubectl apply -f k8s/product-service.yaml
+  
+      
