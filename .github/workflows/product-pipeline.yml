@@ -21,7 +21,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t briitzacr.azurecr.io/microservices-products:latest -f ./service/products/Dockerfile .
+          docker build -t briitzacr.azurecr.io/microservices-products:latest -f ./services/products/Dockerfile .
           docker push briitzacr.azurecr.io/microservices-products:latest
 
       - name: Set up kubectl
