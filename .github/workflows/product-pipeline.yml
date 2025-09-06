@@ -3,7 +3,7 @@ name: Product Pipeline
 on:
   push:
     paths:
-      - 'service/product/**'
+      - 'services/product/**'
       - 'k8s/product-deployment.yaml'
       - 'k8s/product-service.yaml'
       - '.github/workflows/product-pipeline.yml'
