@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
 
-      - name: Build and push Docker
+      - name: Build and push Docker Image
         run: |
           docker build -t briitzacr.azurecr.io/microservices-products:latest -f ./services/products/Dockerfile .
           docker push briitzacr.azurecr.io/microservices-products:latest
