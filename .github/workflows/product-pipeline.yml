@@ -56,7 +56,7 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f K8s/product-service.yaml
+          kubectl apply -f k8s/product-service.yaml
           kubectl set image k8s/product-deployment product=${{ env.IMAGE_TAG }}
           kubectl rollout status deployment/product-deployment
 
