@@ -24,6 +24,10 @@ jobs:
           docker build -t briitzacr.azurecr.io/microservices-products:latest -f ./services/products/Dockerfile services/products
           docker push briitzacr.azurecr.io/microservices-products:latest
 
+      - name: ACR Login
+        run: az acr login --name briitzacr
+
+
       - name: Set up kubectl
         uses: azure/setup-kubectl@v4
         with:
