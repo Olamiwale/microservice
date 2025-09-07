@@ -30,7 +30,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-          
+
       - name: ACR Login
         run: az acr login --name briitzacr
 
@@ -45,6 +45,10 @@ jobs:
         uses: azure/setup-kubectl@v4
         with:
           version: 'latest'
+
+      - name: Get AKS credentials
+        run: az aks get-credentials --resource-group briitzresourcegroup --name briitzCluster --overwrite-existing
+
 
       - name: Deploy to Kubernetes
         run: |
