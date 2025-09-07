@@ -30,14 +30,15 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+          
+      - name: ACR Login
+        run: az acr login --name briitzacr
+
 
       - name: Build and push Docker
         run: |
           docker build -t briitzacr.azurecr.io/microservices-products:latest -f ./services/products/Dockerfile services/products
           docker push briitzacr.azurecr.io/microservices-products:latest
-
-      - name: ACR Login
-        run: az acr login --name briitzacr
 
 
       - name: Set up kubectl
