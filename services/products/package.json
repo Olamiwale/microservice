@@ -1,9 +1,9 @@
 {
   "name": "product-service",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "products/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node products/index.js"
   },
   "dependencies": {
     "express": "^4.21.2"
