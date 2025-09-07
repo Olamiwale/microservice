@@ -3,7 +3,7 @@ name: Product-service Pipeline
 on:
   push:
     paths:
-      - 'services/product/**'
+      - 'services/products/**'
       - 'k8s/product-deployment.yaml'
       - 'k8s/product-service.yaml'
       - '.github/workflows/product-pipeline.yml'
@@ -21,7 +21,7 @@ jobs:
 
       - name: Build and push Docker
         run: |
-          docker build -t briitzacr.azurecr.io/microservices-products:latest -f ./services/products/Dockerfile .
+          docker build -t briitzacr.azurecr.io/microservices-products:latest -f ./services/products/Dockerfile services/products
           docker push briitzacr.azurecr.io/microservices-products:latest
 
       - name: Set up kubectl
@@ -33,5 +33,7 @@ jobs:
         run: |
           kubectl apply -f k8s/product-deployment.yaml
           kubectl apply -f k8s/product-service.yaml
-  
-      
+
+
+
+          
