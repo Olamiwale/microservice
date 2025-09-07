@@ -18,6 +18,12 @@ jobs:
       id-token: write
 
 
+    env:
+      RESOURCE_GROUP: briitzresourcegroup
+      AKS_CLUSTER: briitzCluster
+      ACR_NAME: briitzacr
+
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -57,9 +63,6 @@ jobs:
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/product-service.yaml
-          kubectl set image deployment/product-deployment product=microservices-products${{ env.IMAGE_TAG }}
+          kubectl set image deployment/product-deployment product=microservices-products:${{ env.IMAGE_TAG }}
           kubectl rollout status deployment/product-deployment
 
-
-
-          
