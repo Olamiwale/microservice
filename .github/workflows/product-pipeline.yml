@@ -42,6 +42,7 @@ jobs:
           docker build -t $IMAGE_NAME -f ./services/products/Dockerfile services/products
           docker push $IMAGE_NAME
           echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
+        
 
 
 
@@ -58,7 +59,7 @@ jobs:
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/product-service.yaml
-          kubectl set image deployment/product-deployment product=briitzacr.azurecr.io/microservices-products:${{ env.IMAGE_TAG }}
+          kubectl set image deployment/product-deployment product=${{ env.IMAGE_NAME }}
           kubectl rollout status deployment/product-deployment
 
 
