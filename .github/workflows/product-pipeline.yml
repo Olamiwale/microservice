@@ -18,12 +18,6 @@ jobs:
       id-token: write
 
 
-    env:
-      RESOURCE_GROUP: briitzresourcegroup
-      AKS_CLUSTER: briitzCluster
-      ACR_NAME: briitzacr
-
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
