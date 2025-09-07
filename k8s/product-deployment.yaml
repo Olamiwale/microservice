@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: product
-          image: briitzacr.azurecr.io/microservices-products:latest
-          imagePullPolicy: Always
+          image: briitzacr.azurecr.io/microservices-products:placeholder
+          imagePullPolicy: IfNotPresent 
           ports:
             - containerPort: 3000
