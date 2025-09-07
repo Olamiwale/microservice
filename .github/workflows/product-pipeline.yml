@@ -35,10 +35,13 @@ jobs:
         run: az acr login --name briitzacr
 
 
-      - name: Build and push Docker
+      - name: Build and push Docker image with SHA
         run: |
-          docker build -t briitzacr.azurecr.io/microservices-products:latest -f ./services/products/Dockerfile services/products
-          docker push briitzacr.azurecr.io/microservices-products:latest
+          IMAGE_TAG=${{ github.sha }}
+          IMAGE_NAME=briitzacr.azurecr.io/microservices-products:$IMAGE_TAG
+          docker build -t $IMAGE_NAME -f ./services/products/Dockerfile services/products
+          docker push $IMAGE_NAME
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
 
       - name: Set up kubectl
@@ -46,14 +49,16 @@ jobs:
         with:
           version: 'latest'
 
+
       - name: Get AKS credentials
         run: az aks get-credentials --resource-group briitzresourcegroup --name briitzCluster --overwrite-existing
 
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f k8s/product-deployment.yaml
-          kubectl apply -f k8s/product-service.yaml
+          kubectl apply -f K8s/product-service.yaml
+          kubectl set image deployment/product-deployment product=${{ env.IMAGE_TAG }}
+          kubectl rollout status deployment/product-deployment
 
 
 
