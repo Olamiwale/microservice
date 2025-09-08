@@ -62,5 +62,5 @@ jobs:
         run: |
           kubectl apply -f k8s/services/order-service.yaml
           kubectl apply -f k8s/deployments/order-deployment.yaml
-          kubectl set image deployment/order-deployment user=${{ env.IMAGE_NAME }}
+          kubectl set image deployment/order-deployment order=${{ env.IMAGE_NAME }}
           kubectl rollout status deployment/order-deployment
