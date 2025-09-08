@@ -4,8 +4,8 @@ on:
   push:
     paths:
       - 'services/users/**'
-      - 'k8s/user-deployment.yaml'
-      - 'k8s/user-service.yaml'
+      - 'k8s/deployments/user-deployment.yaml'
+      - 'k8s/services/user-service.yaml'
       - '.github/workflows/user-pipeline.yml'
 
     branches:
