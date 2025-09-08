@@ -55,3 +55,10 @@ jobs:
         
       - name: Get AKS credentials
         run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_CLUSTER --overwrite-existing
+
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f k8s/user-service.yaml
+          kubectl set image deployment/user-deployment user=${{ env.IMAGE_NAME }}
+          kubectl rollout status deployment/user-deployment
