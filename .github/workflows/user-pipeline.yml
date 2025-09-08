@@ -48,6 +48,7 @@ jobs:
           docker push $IMAGE_NAME
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
+
       - name: Set up kubectl
         uses: azure/setup-kubectl@v4
         with:
@@ -61,5 +62,5 @@ jobs:
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f k8s/services/user-service.yaml
-          kubectl set image deployment/user-deployment paul=${{ env.IMAGE_NAME }}
+          kubectl set image deployment/user-deployment briitz=${{ env.IMAGE_NAME }}
           kubectl rollout status deployment/user-deployment
