@@ -13,6 +13,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
+
     permissions:
       contents: read
       id-token: write
@@ -45,7 +47,6 @@ jobs:
         
 
 
-
       - name: Set up kubectl
         uses: azure/setup-kubectl@v4
         with:
@@ -61,5 +62,3 @@ jobs:
           kubectl apply -f k8s/product-service.yaml
           kubectl set image deployment/product-deployment product=${{ env.IMAGE_NAME }}
           kubectl rollout status deployment/product-deployment
-
-

@@ -1,0 +1,39 @@
+name: User-services Pipeline
+
+on:
+  push:
+    paths:
+      - 'services/users/**'
+      - 'k8s/user-deployment.yaml'
+      - 'k8s/user-service.yaml'
+      - '.github/workflows/user-pipeline.yml'
+
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    env:
+      RESOURCE_GROUP: briitzresourcegroup
+      AKS_CLUSTER: briitzCluster
+      ACR_NAME: briitzacr
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Login (OIDC)
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: ACR Login
+        run: az acr login --name $ACR_NAME
