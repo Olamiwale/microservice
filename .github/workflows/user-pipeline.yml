@@ -40,7 +40,7 @@ jobs:
         run: az acr login --name $ACR_NAME
 
 
-      - name: Build and push Docker image with SHA
+      - name: Build and push Docker image with SHA commit
         run: |
           IMAGE_TAG=${{ github.sha }}
           IMAGE_NAME=$ACR_NAME.azurecr.io/microservices-users:$IMAGE_TAG
