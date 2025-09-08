@@ -15,6 +15,5 @@ spec:
       containers:
         - name: user
           image: briitzacr.azurecr.io/microservices-users:placeholder
-          imagePullPolicy: IfNotPresent 
           ports:
             - containerPort: 3000
