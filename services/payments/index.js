@@ -10,6 +10,11 @@ app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok", service: "users-service" });
 });
 
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the Payment Service Portal");
+});
+  
 // Example route
 app.get("/users", (req, res) => {
   res.json(
@@ -23,5 +28,5 @@ app.get("/users", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Users Service running on port ${PORT}`);
+  console.log(`Payment Service Portal running on port ${PORT}`);
 });
