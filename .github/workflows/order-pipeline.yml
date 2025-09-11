@@ -60,7 +60,7 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f k8s/services/order-service.yaml
-          kubectl apply -f k8s/deployments/order-deployment.yaml 
-          kubectl set image deployment/order-deployment order=${{ env.IMAGE_NAME }}
-          kubectl rollout status deployment/order-deployment
+          kubectl apply -f k8s/services/order-service.yaml -n briitz
+          kubectl apply -f k8s/deployments/order-deployment.yaml -n briitz
+          kubectl set image deployment/order-deployment order=${{ env.IMAGE_NAME }} -n briitz
+          kubectl rollout status deployment/order-deployment -n briitz
