@@ -57,7 +57,7 @@ jobs:
 
       - name: Deploy to AKS
         run: |
-          kubectl apply -f k8s/services/payment-service.yaml
-          kubectl apply -f k8s/deployments/payment-deployment.yaml
-          kubectl set image deployment/payment-deployment payment=${{ env.IMAGE_NAME }}
-          kubectl rollout status deployment/payment-deployment
+          kubectl apply -f k8s/services/payment-service.yaml -n briitz
+          kubectl apply -f k8s/deployments/payment-deployment.yaml -n briitz
+          kubectl set image deployment/payment-deployment payment=${{ env.IMAGE_NAME }} -n briitz
+          kubectl rollout status deployment/payment-deployment -n briitz

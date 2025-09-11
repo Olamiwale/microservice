@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payment-deployment
+  namespace: briitz
 spec:
   replicas: 4
   selector:

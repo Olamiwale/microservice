@@ -61,7 +61,7 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f k8s/services/user-service.yaml
-          kubectl apply -f k8s/deployments/user-deployment.yaml
-          kubectl set image deployment/user-deployment user=${{ env.IMAGE_NAME }}
-          kubectl rollout status deployment/user-deployment
+          kubectl apply -f k8s/services/user-service.yaml -n briitz
+          kubectl apply -f k8s/deployments/user-deployment.yaml -n briitz
+          kubectl set image deployment/user-deployment user=${{ env.IMAGE_NAME }} -n briitz
+          kubectl rollout status deployment/user-deployment -n briitz
