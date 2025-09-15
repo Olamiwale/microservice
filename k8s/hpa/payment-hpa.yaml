@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: user-hpa
+  name: payment-hpa
   namespace: briitz 
 spec:
   scaleTargetRef:
