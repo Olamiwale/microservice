@@ -18,3 +18,11 @@ spec:
           image: briitzacr.azurecr.io/microservices-orders:placeholder
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi" 
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+              
