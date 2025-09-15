@@ -7,6 +7,7 @@ on:
       - 'k8s/deployments/payment-deployment.yaml'
       - 'k8s/services/payment-service.yaml'
       - '.github/workflows/payment-pipeline.yml'
+      - 'k8s/hpa/payment-hpa.yaml'
     branches:
       - main
 
@@ -61,3 +62,8 @@ jobs:
           kubectl apply -f k8s/deployments/payment-deployment.yaml -n briitz
           kubectl set image deployment/payment-deployment payment=${{ env.IMAGE_NAME }} -n briitz
           kubectl rollout status deployment/payment-deployment -n briitz
+
+      - name: Deploy scaling policy
+        run: |
+          kubectl apply -f k8s/hpa/payment-hpa.yaml -n briitz
+          kubectl get hpa payment-hpa -n briitz

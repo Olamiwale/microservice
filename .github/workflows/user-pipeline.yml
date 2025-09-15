@@ -7,6 +7,7 @@ on:
       - 'k8s/deployments/user-deployment.yaml'
       - 'k8s/services/user-service.yaml'
       - '.github/workflows/user-pipeline.yml'
+      - 'k8s/hpa/user-hpa.yaml'
 
     branches:
       - main

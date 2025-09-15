@@ -1,0 +1,11 @@
+alertmanager:
+  enabled: true
+
+server:
+  service:
+    type: LoadBalancer 
+
+serviceAccounts:
+  server:
+    create: true
+    name: prometheus

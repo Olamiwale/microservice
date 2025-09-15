@@ -7,6 +7,7 @@ on:
       - 'k8s/deployments/order-deployment.yaml'
       - 'k8s/services/order-service.yaml'
       - '.github/workflows/order-pipeline.yml'
+      - 'k8s/hpa/order-hpa.yaml'
     branches:
       - main
 
@@ -64,3 +65,8 @@ jobs:
           kubectl apply -f k8s/deployments/order-deployment.yaml -n briitz
           kubectl set image deployment/order-deployment order=${{ env.IMAGE_NAME }} -n briitz
           kubectl rollout status deployment/order-deployment -n briitz
+
+      - name: Deploy scaling policy
+        run: |
+          kubectl apply -f k8s/hpa/order-hpa.yaml -n briitz
+          kubectl get hpa order-hpa -n briitz

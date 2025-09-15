@@ -1,15 +1,15 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: order-hpa
-  namespace: briitz
+  name: user-hpa
+  namespace: briitz 
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: order-deployment
-  minReplicas: 2        
-  maxReplicas: 10    
+    name: payment-deployment
+  minReplicas: 2         
+  maxReplicas: 10        
   metrics:
   - type: Resource
     resource:
@@ -18,7 +18,7 @@ spec:
         type: Utilization
         averageUtilization: 30
   - type: Resource
-    resource: 
+    resource:
       name: memory
       target:
         type: Utilization
