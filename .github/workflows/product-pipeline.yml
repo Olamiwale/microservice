@@ -7,6 +7,7 @@ on:
       - 'k8s/deployments/product-deployment.yaml'
       - 'k8s/services/product-service.yaml'
       - '.github/workflows/product-pipeline.yml'
+      - 'k8s/hpa/product-hpa.yaml'
     branches:
       - main
 
@@ -63,3 +64,7 @@ jobs:
           kubectl apply -f k8s/deployments/product-deployment.yaml -n briitz
           kubectl set image deployment/product-deployment product=${{ env.IMAGE_NAME }} -n briitz
           kubectl rollout status deployment/product-deployment -n briitz
+
+      - name: Deploy Scaling Policy
+        run: |
+          kubectl apply -f k8s/hpa/product-hpa.yaml -n briitz

@@ -69,4 +69,3 @@ jobs:
       - name: Deploy scaling policy
         run: |
           kubectl apply -f k8s/hpa/order-hpa.yaml -n briitz
-          kubectl get hpa order-hpa -n briitz

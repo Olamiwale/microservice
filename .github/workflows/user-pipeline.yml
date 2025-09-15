@@ -66,3 +66,7 @@ jobs:
           kubectl apply -f k8s/deployments/user-deployment.yaml -n briitz
           kubectl set image deployment/user-deployment user=${{ env.IMAGE_NAME }} -n briitz
           kubectl rollout status deployment/user-deployment -n briitz
+
+      - name: Deploy Scaling Policy
+        run: |
+          kubectl apply -f k8s/hpa/user-hpa.yaml -n briitz

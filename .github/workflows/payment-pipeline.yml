@@ -66,4 +66,3 @@ jobs:
       - name: Deploy scaling policy
         run: |
           kubectl apply -f k8s/hpa/payment-hpa.yaml -n briitz
-          kubectl get hpa payment-hpa -n briitz
