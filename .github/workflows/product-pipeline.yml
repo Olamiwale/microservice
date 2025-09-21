@@ -55,7 +55,7 @@ jobs:
 
 
       - name: Get AKS credentials
-        run: az aks get-credentials --resource-group briitzresourcegroup --name briitzaks --overwrite-existing
+        run: az aks get-credentials --resource-group briitz --name briitzaks --overwrite-existing
 
 
       - name: Deploy to Kubernetes
