@@ -20,6 +20,11 @@ jobs:
       contents: read
       id-token: write
 
+    env:
+      RESOURCE_GROUP: briitzresourcegroup
+      AKS_CLUSTER: briitzaks
+      ACR_NAME: briitzacr
+
 
     steps:
       - name: Checkout code
@@ -35,7 +40,7 @@ jobs:
 
 
       - name: ACR Login
-        run: az acr login --name briitzacr
+        run: az acr login --name $ACR_NAME
 
 
       - name: Build and push Docker image with SHA commit
@@ -55,7 +60,7 @@ jobs:
 
 
       - name: Get AKS credentials
-        run: az aks get-credentials --resource-group briitz --name briitzaks --overwrite-existing
+        run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_CLUSTER --overwrite-existing
 
 
       - name: Deploy to Kubernetes

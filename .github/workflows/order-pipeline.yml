@@ -20,7 +20,7 @@ jobs:
       id-token: write
 
     env:
-      RESOURCE_GROUP: briitz
+      RESOURCE_GROUP: briitzresourcegroup
       AKS_CLUSTER: briitzaks
       ACR_NAME: briitzacr
 
