@@ -4,7 +4,7 @@ metadata:
   name: payment-deployment
   namespace: briitz
 spec:
-  replicas: 5
+  replicas: 6
   selector:
     matchLabels:
       app: payment  

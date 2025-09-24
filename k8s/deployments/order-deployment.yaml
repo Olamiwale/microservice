@@ -4,7 +4,7 @@ metadata:
   name: order-deployment
   namespace: briitz
 spec:
-  replicas: 4
+  replicas: 5
   selector:
     matchLabels:
       app: order
