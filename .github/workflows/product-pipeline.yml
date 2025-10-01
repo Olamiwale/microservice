@@ -1,4 +1,4 @@
-name: Product-service Pipeline
+name: Product-services Pipeline
 
 on:
   push:
