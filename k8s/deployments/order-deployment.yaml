@@ -18,6 +18,8 @@ spec:
           image: briitzacr.azurecr.io/microservices-orders:placeholder
           ports:
             - containerPort: 3000
+
+     #.........resource management......#       
           resources:
             requests:
               cpu: "100m"
@@ -26,6 +28,7 @@ spec:
               cpu: "500m"
               memory: "256Mi"
 
+      #........health checks.........#
           livenessProbe:
             httpGet:
               path: /health
