@@ -1,4 +1,4 @@
-name: Order-service Pipeline
+name: Order-services Pipeline
 
 on:
   push:
