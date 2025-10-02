@@ -1,20 +1,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: order-service-ingress
+  name: payment-service-ingress
   namespace: briitz
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   rules:
     - host: briitz.shop
       http:
         paths:
-          - path: /order-service
-            pathType: Prefix
+          - path: /payment-service/(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
-                name: order-service
+                name: payment-service
                 port:
                   number: 80
+ 
